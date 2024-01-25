@@ -1,3 +1,4 @@
+%!TEX program = lualatex
 \documentclass[11pt]{article}
 \usepackage[a4paper, margin=1in, includehead]{geometry}
 \geometry{a4paper} 
@@ -11,6 +12,7 @@
 \usepackage{graphicx} 
 \usepackage{titling}
 \usepackage{fancyhdr}
+\usepackage{tabularray}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhfoffset[L]{1cm} % left extra length
@@ -27,14 +29,14 @@
 \usepackage{fancyhdr}
 \usepackage{lmodern}
 \usepackage{wrapfig}
-\usepackage[none]{hyphenat}
 \usepackage[page,toc,titletoc,title]{appendix}
 
-\usepackage{helvet}
-\renewcommand{\familydefault}{\sfdefault}
+\usepackage{fontspec}
+\setmainfont{Arial}
 
 \pagestyle{fancy}
 
+\usepackage{titlesec}
 \begin{document}
 \begin{titlingpage}
 \begin{flushright}
@@ -71,23 +73,40 @@
 \end{center}
 \end{titlingpage}
 
+\titleformat{name=\section}[block]
+  {\sffamily\LARGE}
+  {}
+  {0pt}
+  {\colorsectionx}
+\titlespacing*{\section}{0pt}{\baselineskip}{\baselineskip}
+\newcommand{\colorsectionx}[1]{\colorbox{gray!120}{\parbox{\dimexpr\textwidth-2\fboxsep}{\color{white} \centering \huge{Contents}}}}
+
 \tableofcontents
 
 \newpage
-\section{Revisions}
-\begin{tabular}{|p{2cm}|p{4.2cm}|p{5.3cm}|p{3.5cm}|}
+\titleformat{name=\section}[block]
+  {\sffamily\LARGE}
+  {}
+  {0pt}
+  {\colorsection}
+\titlespacing*{\section}{0pt}{\baselineskip}{\baselineskip}
+
+\newcommand{\colorsection}[1]{\colorbox{gray!120}{\parbox{\dimexpr\textwidth-2\fboxsep}{\color{white}\huge{\thesection. }\ #1}}}
+
+\section{\centering{Revisions}}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
     \hline
     \rowcolor{Gainsboro!60}
     \textbf{Version} & \textbf{Primary Author(s)} & \textbf{Description of Version} & \textbf{Date Completed} \\
     \hline
-    \makecell{v1.0} & \makecell{Raghav Manglik \\ Amogh Bhagwat \\ Srishti Chandra \\ Wadkar Srujan Nitin \\ Pathe Nevish Ashok \\ Debraj Kamakar \\ Khushi Gupta \\ Ananya Baghel \\ Anaswar K B \\ Kaneez Fatima \\} & \makecell{First version of the Software \\ Requirement Specification \\ (SRS) Document} & \makecell{24/01/23} \\
+    \makecell{v1.0} & \makecell{Raghav Manglik \\ Amogh Bhagwat \\ Srishti Chandra \\ Wadkar Srujan Nitin \\ Pathe Nevish Ashok \\ Debraj Kamakar \\ Khushi Gupta \\ Ananya Baghel \\ Anaswar K B \\ Kaneez Fatima \\} & \makecell{First version of the Software \\ Requirement Specification \\ (SRS) Document} & \makecell{25/01/23} \\
     \hline
 \end{tabular}
-
-
+\end{center}
 
 \newpage
-\section{Introduction}
+\section{\centering{Introduction}}
 \subsection{Product Scope}
 Many individuals, from students to faculties, have embraced the lifestyle of cycling at the IITK campus. These cycles require timely maintenance and often get lost. A large number of lost cycles are never found by the owners and remain stacked like waste. Considering the temporary stay of students on campus, buying new cycles is not very cost-effective in such cases. In addition to that, during fests and other campus events, visitors from outside generally face problems in roaming around our huge campus.
 
@@ -141,17 +160,21 @@ It will also schedule maintenance on a regular basis, taking a record of the cli
 \end{center}
 
 \subsection{Document Conventions}
-
+\begin{itemize}
+    \item The document is written using LaTeX (\LaTeX) to ensure the consistency of the document and to make it easier to maintain.
+    \item The document is written with the \textbf{Arial} font of size 11 with single spacing and 1-inch margins
+    \item Important keywords are highlighted in bold font and comments are italicized
+\end{itemize}
 
 \subsection{References and Acknowledgments}
 \begin{itemize}
-    \item We would also like to acknowledge the help of our TA, Mr. Bharat, and our course instructor, Prof. Indranil Saha for guiding us through the document, and providing a template for the Software Requirements Specification document.
+    \item We would like to acknowledge the help of our TA, Mr. Bharat, and our course instructor, Prof. Indranil Saha for guiding us through the document, and providing a template for the Software Requirements Specification document.
     \item We utilised \href{https://www.figma.com/}{Figma} to craft visually compelling graphs, effectively translating our ideas into a concise and impactful pictorial representation.
     \item We used the tool \href{https://www.circuito.io/}{Circuito.io} to capture the electronic circuit of the hardware subsystem.
 \end{itemize}
 
 \newpage
-\section{Overall Description}
+\section{\centering{Overall Description}}
 \subsection{Product Overview}
 Our product, PedalPal, is designed to enhance the cycling experience for IITK students through a convenient and efficient bicycle-sharing system on campus. Invaluable for students who have lost their bicycles or are facing cycling issues, PedalPal serves as a self-contained product, allowing easy bicycle issuance from strategically installed hubs across the university. Moreover, it caters to campus visitors, providing a seamless means to explore the campus on wheels. 
 
@@ -193,7 +216,7 @@ The software streamlines the user interaction process by allowing users to book 
 \end{itemize}
 
 \newpage
-\section{Specific Requirements}
+\section{\centering{Specific Requirements}}
 \subsection{External Interface Requirements}
 \subsubsection{User Interfaces}
 
@@ -463,7 +486,7 @@ The navigation bar has various options like viewing user profile, wallet, histor
 \end{center}
 
 \newpage
-\section{Other Non-Functional Requirements}
+\section{\centering{Other Non-Functional Requirements}}
 \subsection{Performance Requirements}
 The software should maintain a 99.9\% uptime, allowing users to access cycle rental services without significant disruptions, excluding scheduled maintenance windows.
 
@@ -500,21 +523,187 @@ The system should support a minimum of 500 concurrent rental transactions per mi
 We are using Django with bootstrap and inline CSS to design the front-end part of our application, thus our application is portable, responsive and can run on most of the modern web browsers.
 
 \newpage
-\section{Other Requirements}
+\section{\centering{Other Requirements}}
 \subsection{Legal Requirements and Copyright}
 User data collected should be stored in the country’s regional data center. This is to comply with data protection and privacy rules that may be enforced by the Government of the nation. 
 \\
 Copyright of the source code and the documents must be retained by the developers of the system.
 
 \subsection{Authentication}
-Permission will be required for utilising OTPs for the authentication process as this will require sending automated emails to the user's emiail id. 
+Permission will be required for utilising OTPs for the authentication process as this will require sending automated emails to the user's email id. 
 
 \appendixpageoff
 \begin{appendices}
 \newpage
-\section{Data Dictionary}
+\section{\centering{Data Dictionary}}
+
+\subsection{User Database}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{0.2\textwidth}|>{\centering\arraybackslash}m{0.4\textwidth}|>{\centering\arraybackslash}m{0.3\textwidth}|}
+    \hline
+    \textbf{Variable} & \textbf{Description} & \textbf{Requirements} \\
+    \hline
+    \textbf{ID} & Unique ID of the user &  Unique for each user\\
+    \hline
+    \textbf{Information} & Personal information of the user &  String\\
+    \hline
+    \textbf{Password} & Password of the user &  Encrypted string\\
+    \hline
+    \textbf{Email} & Email of the user &  IITK Email\\
+    \hline
+    \textbf{Phone Number} & Phone number of the user &  String\\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Rides Database}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{0.2\textwidth}|>{\centering\arraybackslash}m{0.4\textwidth}|>{\centering\arraybackslash}m{0.3\textwidth}|}
+    \hline
+    \textbf{Variable} & \textbf{Description} & \textbf{Requirements} \\
+    \hline
+    \textbf{ID} & Unique ID of the ride &  Unique for each ride\\
+    \hline
+    \textbf{User ID} & ID of the user who booked the ride & Must be a valid ID\\
+    \hline
+    \textbf{Cycle ID} & ID of the cycle used for the ride & Must be a valid ID\\
+    \hline
+    \textbf{Start Time} & Time at which the ride started &  Time\\
+    \hline
+    \textbf{End Time} & Time at which the ride ended &  Time\\
+    \hline
+    \textbf{Start Hub} & Hub from which the ride started &  Must be a valid hub\\
+    \hline
+    \textbf{End Hub} & Hub at which the ride ended &  Must be a valid hub\\
+    \hline
+    \textbf{Cost} & Cost of the ride &  Integer\\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Hubs Database}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{0.2\textwidth}|>{\centering\arraybackslash}m{0.4\textwidth}|>{\centering\arraybackslash}m{0.3\textwidth}|}
+    \hline
+    \textbf{Variable} & \textbf{Description} & \textbf{Requirements} \\
+    \hline
+    \textbf{ID} & Unique ID of the hub &  Unique for each hub\\
+    \hline
+    \textbf{Location} & Location of the hub &  String\\
+    \hline
+    \textbf{Number of Cycles} & Number of cycles available at the hub &  Integer\\
+    \hline
+    \textbf{List of cycles} & List of cycles available at the hub &  List of cycle IDs\\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Cycles Database}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{0.2\textwidth}|>{\centering\arraybackslash}m{0.4\textwidth}|>{\centering\arraybackslash}m{0.3\textwidth}|}
+    \hline
+    \textbf{Variable} & \textbf{Description} & \textbf{Requirements} \\
+    \hline
+    \textbf{ID} & Unique ID of the cycle &  Unique for each cycle\\
+    \hline
+    \textbf{Location} & Location of the cycle &  String\\
+    \hline
+    \textbf{In Use} & Whether the cycle is in use or not &  Boolean\\
+    \hline
+    \textbf{Age} & Age of the cycle &  Integer\\
+    \hline
+    \textbf{Usability} & Usability of the cycle &  Boolean\\
+    \hline
+    \textbf{Maintenance} & Maintenance history of the cycle &  List of maintenance IDs\\
+    \hline
+    \textbf{Last servicing} & Time at which the cycle was last serviced &  Time\\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Payments Database}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{0.2\textwidth}|>{\centering\arraybackslash}m{0.4\textwidth}|>{\centering\arraybackslash}m{0.3\textwidth}|}
+    \hline
+    \textbf{Attribute} & \textbf{Description} & \textbf{Requirements} \\
+    \hline
+    \textbf{ID} & Unique ID of the payment &  Unique for each payment\\
+    \hline
+    \textbf{User ID} & ID of the user who made the payment &  Must be a valid ID\\
+    \hline
+    \textbf{Ride ID} & ID of the ride for which the payment was made &  Must be a valid ID\\
+    
+    \textbf{Amount} & Amount of the payment &  Integer\\
+    \hline
+    \textbf{Time} & Time at which the payment was made &  Time\\
+    \hline
+    \textbf{Payment Method} & Method used for the payment &  String\\
+    \hline
+    \textbf{Status} & Whether the payment was successful or not &  Boolean\\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Maintenance Database}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{0.2\textwidth}|>{\centering\arraybackslash}m{0.4\textwidth}|>{\centering\arraybackslash}m{0.3\textwidth}|}
+    \hline
+    \textbf{Attribute} & \textbf{Description} & \textbf{Requirements} \\
+    \hline
+    \textbf{ID} & Unique ID of the maintenance &  Unique for each maintenance\\
+    \hline
+    \textbf{Cycle ID} & ID of the cycle which was serviced &  Must be a valid ID\\
+    \hline
+    \textbf{Time} & Time at which the maintenance was done &  Time\\
+    \hline
+    \textbf{Description} & Description of the maintenance &  String\\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Booking Database}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{0.2\textwidth}|>{\centering\arraybackslash}m{0.4\textwidth}|>{\centering\arraybackslash}m{0.3\textwidth}|}
+    \hline
+    \textbf{Attribute} & \textbf{Description} & \textbf{Requirements} \\
+    \hline
+    \textbf{ID} & Unique ID of the booking &  Unique for each booking\\
+    \hline
+    \textbf{User ID} & ID of the user who booked the cycle &  Must be a valid ID\\
+    \hline
+    \textbf{Cycle ID} & ID of the cycle which was booked &  Must be a valid ID\\
+    \hline
+    \textbf{Booking Time} & Time at which the booking was done &  Time\\
+    \hline
+    \textbf{Start Time} & Time for which the cycle was booked &  Time, must be no further than 30 minutes from booking time\\
+    \hline
+    \textbf{Start Hub} & Hub from which the cycle was booked &  Must be a valid hub\\
+    \hline
+\end{tabular}
+\end{center}
 
 \newpage
-\section{Group Log}
+\section{\centering{Group Log}}
+\begin{tabular}{|p{1cm}|p{2cm}|p{2cm}|p{2cm}|p{6.75cm}|}
+\hline
+\makecell{\textbf{S.No}} & \makecell{\textbf{Date}} & \makecell{\textbf{Timings}} & \makecell{\textbf{Venue}} & \makecell{\textbf{Description}} \\
+\hline
+\makecell{1} & \makecell{07/01/2024} & \makecell{14:00\\ to \\16:00} & \makecell{RM \\Building} & \makecell{Brain-stormed various possible \\ prospective ideas for the project. \\ Main ideas presented were: \\ Bicycle Rental Services \\ Hall Management \\ Used goods Buy/Sell Portal} \\
+\hline
+\makecell{2} & \makecell{09/01/2024} & \makecell{14:30\\to\\17:00} & \makecell{Google\\ Meet} & \makecell{Finalized the idea for the project and \\ discussed various aspects of it.} \\
+\hline
+\makecell{3} & \makecell{11/01/2024} & \makecell{22:00\\to\\00:00} & \makecell{Google\\Meet} & \makecell{Studied the SRS template given and \\ distributed the work amongst the team \\ members.} \\
+\hline
+\makecell{4} & \makecell{17/01/2024} & \makecell{21:00\\to\\21:30} & \makecell{Google\\Meet} & \makecell{First meet with the Teaching Assistant \\ Mr. Bharat. Discussed about project \\ and the SRS documentation.} \\
+\hline
+\makecell{5} & \makecell{20/01/2024} & \makecell{15:00\\to\\18:00} & \makecell{Google\\Meet} & \makecell{Brainstorming of final ideas and \\ discussion on use cases, features, \\ data flows.} \\
+\hline
+\makecell{6} & \makecell{21/01/2024} & \makecell{14:00\\to\\15:00} & \makecell{Google\\Meet} & \makecell{Decided to use Django with bootstrap \\ and inline CSS to build the front end \\ part of our application and PostgreSQL \\ as our DBMS.} \\
+\hline
+\makecell{7} & \makecell{22/01/2024} & \makecell{23:00\\to\\00:00} & \makecell{Google\\Meet} & \makecell{Explored more functionalities for the \\ product and progressed with the SRS \\ document.} \\
+\hline
+\makecell{9} & \makecell{25/01/2024} & \makecell{14:00\\to\\17:00} & \makecell{RM\\Building} & \makecell{Finalized the SRS Document and\\completed typesetting in \LaTeX} \\
+\hline
+\end{tabular}
 \end{appendices}
 \end{document}
