@@ -1,8 +1,25 @@
-\documentclass[11pt]{article}
-\usepackage[a4paper, margin=1in, includehead]{geometry}
+\documentclass{scrreprt}
+\usepackage[top=3cm, bottom=3cm, left = 2cm, right = 2cm]{geometry} 
+\geometry{a4paper} 
+\usepackage[table, svgnames, dvipsnames]{xcolor}
+\usepackage{makecell, cellspace, caption}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{fontawesome}
+\usepackage{graphicx}
 \usepackage{graphicx} 
+\usepackage{titling}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhfoffset[L]{1cm} % left extra length
+\fancyhfoffset[R]{1cm} % right extra length
+\rhead{\textbf{\textit{Page-\thepage}}}
+\lhead{\textbf{\textit{Software Requirements Specification for PedalPal}}}
+\cfoot{}
 \usepackage{amsmath,amssymb}  
 \usepackage{bm}  
 \usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref}  
@@ -13,64 +30,68 @@
 \usepackage{lmodern}
 \usepackage{wrapfig}
 \usepackage[none]{hyphenat}
-\usepackage{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-
 \usepackage[page,toc,titletoc,title]{appendix}
 
 \pagestyle{fancy}
-\fancyhead{}
-\fancyhead[L]{\textbf{\textit{{{Software Requirements Specification for PedalPal}}}}}
-\fancyhead[R]{\textbf{\textit{Page \thepage}}}
-\fancyfoot{}
 
 \begin{document}
+\begin{titlingpage}
 \begin{flushright}
-    % \rule{16cm}{5pt}\vskip1cm
-    \textbf{{\fontsize{30}{36}\selectfont Software Requirements}\\ {\fontsize{30}{36}\selectfont Specification}\\\vspace{1cm}\huge{for}\\\vspace{1cm}\Huge{PedalPal}\\ \vspace{1.5cm}\LARGE{Version 1.0}\\\vspace{1cm}\LARGE{Prepared by}}
+    \rule{16cm}{5pt}\vskip1cm
+    \textbf{{\fontsize{40}{48}\selectfont Software Requirements}\\ {\fontsize{40}{48}\selectfont Specification}\\\vspace{1cm}\huge{for}\\\vspace{1cm}\Huge{PedalPal}\\ \vspace{1.5cm}\huge{Version 1.0}\\\vspace{1cm}\huge{Prepared by}}
 \end{flushright}
 \vspace{1.0cm}
 \large{\begin{tabular*}{\columnwidth}{@{\extracolsep{\stretch{1}}}*{3}{c}@{}}
-    \Large{Group 4} & & \Large{Group Name: Bit Brewers} \\
-    Raghav Manglik & 220854 & \href{mailto:raghavkmanglik@gmail.com}{raghavkmanglik@gmail.com} \\
-    Amogh Bhagwat & 220288 & \href{mailto:amogh.2004b@gmail.com}{amogh.2004b@gmail.com} \\
-    Srishti Chandra & 221088 & \href{mailto:chandra.srishti2403@gmail.com}{chandra.srishti2403@gmail.com} \\
-    Wadkar Srujan Nitin & 221212 & \href{mailto:srujanwadkar@gmail.com}{srujanwadkar@gmail.com} \\
-    Anaswar K B & 220138 & \href{mailto:anaswarkb013@gmail.com}{anaswarkb013@gmail.com} \\
-    Khushi Gupta & 220531 & \href{mailto:khushi07g@gmail.com}{khushi07g@gmail.com} \\
-    Ananya Singh Baghel & 220136 & \href{mailto:ananyabaghel2004@gmail.com}{ananyabaghel2004@gmail.com} \\
-    Pathe Nevish Ashok & 220757 & \href{mailto:nevu.pathe1234@gmail.com}{nevu.pathe1234@gmail.com} \\
-    Debraj Kamakar & 220329 & \href{mailto:debraj2003jsr@gmail.com}{debraj2003jsr@gmail.com} \\
-    Kaneez Fatima & 220496 & \href{mailto:kaneezfatimamehdi7@gmail.com}{kaneezfatimamehdi7@gmail.com} \\
+    \Large{\textbf{Group \# 4}} & & \Large{\textbf{Group Name: Bit Brewers}} \\
+    \\
+    \textbf{Raghav Manglik} & \textbf{220854} & \href{mailto:raghavkmanglik@gmail.com}{raghavkmanglik@gmail.com} \\
+    \textbf{Amogh Bhagwat} & \textbf{220288} & \href{mailto:amogh.2004b@gmail.com}{amogh.2004b@gmail.com} \\
+    \textbf{Srishti Chandra} & \textbf{221088} & \href{mailto:chandra.srishti2403@gmail.com}{chandra.srishti2403@gmail.com} \\
+    \textbf{Wadkar Srujan Nitin} & \textbf{221212} & \href{mailto:srujanwadkar@gmail.com}{srujanwadkar@gmail.com} \\
+    \textbf{Anaswar K B} & \textbf{220138} & \href{mailto:anaswarkb013@gmail.com}{anaswarkb013@gmail.com} \\
+    \textbf{Khushi Gupta} & \textbf{220531} & \href{mailto:khushi07g@gmail.com}{khushi07g@gmail.com} \\
+    \textbf{Ananya Singh Baghel} & \textbf{220136} & \href{mailto:ananyabaghel2004@gmail.com}{ananyabaghel2004@gmail.com} \\
+    \textbf{Pathe Nevish Ashok} & \textbf{220757} & \href{mailto:nevu.pathe1234@gmail.com}{nevu.pathe1234@gmail.com} \\
+    \textbf{Debraj Kamakar} & \textbf{220329} & \href{mailto:debraj2003jsr@gmail.com}{debraj2003jsr@gmail.com} \\
+    \textbf{Kaneez Fatima} & \textbf{220496} & \href{mailto:kaneezfatimamehdi7@gmail.com}{kaneezfatimamehdi7@gmail.com} \\
     
 \end{tabular*}}
 
-\vspace{2.0cm}
+\vspace{1.5cm}
 \begin{center}
 \large{
 \begin{tabular}{l l}
-    Course: & CS253 \\
-    Mentor TA: & Mr. Bharat \\
-    Instructor: & Prof. Indranil Saha \\
-    Date: & \today
+    \textbf{Course:} & \textbf{CS253} \\
+    \textbf{Mentor TA:} & \textbf{Mr. Bharat} \\
+    \textbf{Instructor:} & \textbf{Prof. Indranil Saha} \\
+    \textbf{Date:} & \textbf{\today}
 \end{tabular}
 }
 \end{center}
-\newpage
+\end{titlingpage}
+
 \tableofcontents
 
-\newpage
-\section{Revisions}
+\chapter{Revisions}
+\begin{tabular}{|p{2cm}|p{4.2cm}|p{5.3cm}|p{3.5cm}|}
+    \hline
+    \rowcolor{Gainsboro!60}
+    \textbf{Version} & \textbf{Primary Author(s)} & \textbf{Description of Version} & \textbf{Date Completed} \\
+    \hline
+    \makecell{v1.0} & \makecell{Raghav Manglik \\ Amogh Bhagwat \\ Srishti Chandra \\ Wadkar Srujan Nitin \\ Pathe Nevish Ashok \\ Debraj Kamakar \\ Khushi Gupta \\ Ananya Baghel \\ Anaswar K B \\ Kaneez Fatima \\} & \makecell{First version of the Software \\ Requirement Specification \\ (SRS) Document} & \makecell{24/01/23} \\
+    \hline
+\end{tabular}
 
-\newpage
-\section{Introduction}
-\subsection{Product Scope}
+
+
+\chapter{Introduction}
+\section{Product Scope}
 Many individuals, from students to faculties, have embraced the lifestyle of cycling at the IITK campus. These cycles require timely maintenance and often get lost. A large number of lost cycles are never found by the owners and remain stacked like waste. Considering the temporary stay of students on campus, buying new cycles is not very cost-effective in such cases. In addition to that, during fests and other campus events, visitors from outside generally face problems in roaming around our huge campus.
 
 This calls for a need for public cycle stands, from where the cycles can be rented using our  software application. These cycle stands will be located at some of the most visited locations on campus, which can be accessed through our portal, making the transport easier. Specifying the location will inform them about the nearest stands along with the number of available cycles in it.
 It will also schedule maintenance on a regular basis, taking a record of the client’s feedback. The app will keep track of the duration for which the cycle is used by the client and charge accordingly. We will also provide cycle booking facilities
 
-\subsection{Intended Audience and Document Overview}
+\section{Intended Audience and Document Overview}
 \textbf{Software Developers} who will design the software as per the requirements given in the document, in this case, the group members. \textbf{Project Managers} who will supervise the planning and execution of the software development procedure, in this case, the TAs and the course instructor. \textbf{Testers and approvers} who will perform a quality check of the designed software and give their feedback on the interface, areas of improvement, etc. \textbf{Users} will be the customers of the software, in this case, our entire campus residents and visitors.
 
 \subsection*{Document Overview}
@@ -89,7 +110,7 @@ This section contains detailed information about the software and explains its f
 \subsubsection*{Section 5: Other Non-Functional Requirements}
 Important non-functional requirements are expounded here. This is of special importance to the developers of the software.
 
-\subsection{Definitions, Acronyms, and Abbreviations}
+\section{Definitions, Acronyms, and Abbreviations}
 \begin{center}
 \begin{tabular}{|c|c|p{.5\textwidth}}
     \hline
@@ -122,36 +143,59 @@ Important non-functional requirements are expounded here. This is of special imp
 \end{tabular}
 \end{center}
 
-\subsection{Document Conventions}
+\section{Document Conventions}
 
-\subsection{References and Acknowledgments}
+\section{References and Acknowledgments}
 \begin{itemize}
     \item We would also like to acknowledge the help of our TA, Mr. Bharat, and our course instructor, Prof. Indranil Saha for guiding us through the document, and providing a template for the Software Requirements Specification document.
     \item We utilised \href{https://www.figma.com/}{Figma} to craft visually compelling graphs, effectively translating our ideas into a concise and impactful pictorial representation.
     \item We used the tool \href{https://www.circuito.io/}{Circuito.io} to capture the electronic circuit of the hardware subsystem.
 \end{itemize}
 
-\newpage
-\section{Overall Description}
-\subsection{Product Overview}
+\chapter{Overall Description}
+\section{Product Overview}
 Our product, PedalPal, is designed to enhance the cycling experience for IITK students through a convenient and efficient bicycle-sharing system on campus. Invaluable for students who have lost their bicycles or are facing cycling issues, PedalPal serves as a self-contained product, allowing easy bicycle issuance from strategically installed hubs across the university. Moreover, it caters to campus visitors, providing a seamless means to explore the campus on wheels. 
 
 The software streamlines the user interaction process by allowing users to book cycles for desired durations and receive real-time information about available cycles. PedalPal further enhances the experience by offering personalized details on the closest hub to the user's current location, ensuring convenient access. The user interface incorporates a history feature, allowing users to review past cycling sessions and track usage patterns. Thus providing a user-friendly solution and optimizing the cycling journey for both students and visitors on campus.
+\\
+\\
+\includegraphics[scale=0.9]{Overview.png}
 
-\subsection{Product Functionality}
+\section{Product Functionality}
 \begin{itemize}
-    \item Administrative access using designated usernames and passwords
-    \item Provision for users to register to avail services and subscribe for enhanced features
-    \item Availability of an advance cycle booking system exclusively for subscribed users
-    \item Real-time visibility of available cycles at each hub
-    \item Visibility of hubs in proximity to any specified location
-    \item User location tracking for personalized service
+    \item \textbf{Administrative access} using designated usernames and passwords
+    \item Provision for users to \textbf{register} to avail services and \textbf{subscribe} for enhanced features
+    \item Availability of an \textbf{advance cycle booking system} exclusively for subscribed users
+    \item \textbf{Real-time visibility} of available cycles at each hub
+    \item \textbf{Visibility of hubs} in proximity to any specified location
+    \item \textbf{User location tracking} for personalized service
+    \item Implementation of a scheduled \textbf{maintenance system} for the upkeep of cycles.
+    \item \textbf{Customer feedback} mechanism for maintenance or post-ride experiences.
+    \item Access to \textbf{detailed analytics}, including ride and payment history.
+    \item Implementation of a \textbf{notification system} to keep users informed about significant events and updates.
+
 \end{itemize}
 
-\newpage
-\section{Specific Requirements}
-\subsection{External Interface Requirements}
-\subsubsection{User Interfaces}
+\section{Design and Implementation Constraints}
+\begin{itemize}
+    \item As the user database grows, the system must efficiently manage and store data related to bicycle bookings, user profiles, and cycles.
+    \item To ensure real-time information about available cycles, the implementation of efficient communication protocols between the server, hubs, and user devices is crucial.
+    \item The website, as of now, is available only in English.
+    \item With a large user base, the system must handle simultaneous bicycle booking requests and cycle issuance requests from the hub to ensure smooth operations during peak usage.
+
+\end{itemize}
+
+\section{Assumptions and Dependencies}
+\begin{itemize}
+    \item The app seamlessly integrates with local infrastructure, including cycle parking and lock systems.
+    \item Users are held accountable for the bicycles they rent. In the event of theft due to negligence, users may be responsible for associated costs or penalties.
+    \item The admins manage any changes or additions effectively.
+
+\end{itemize}
+
+\chapter{Specific Requirements}
+\section{External Interface Requirements}
+\subsection{User Interfaces}
 
 \begin{center}
     \includegraphics*{login-interface.png}
@@ -171,9 +215,9 @@ The home screen presents several options, such as a profile sidebar that feature
 \begin{figure}[h]
     \centering    
     \includegraphics[scale=0.3]{main-ui.png}
-    \hspace{30px}
+    \hspace{30pt}
     \includegraphics[scale=0.3]{navbar-ui.png}
-    \hspace{30px}
+    \hspace{30pt}
     \includegraphics[scale=0.3]{history-ui.png}
 \end{figure}
 
@@ -182,7 +226,7 @@ The main screen of the app will present a map view of the campus, with the hubs 
 The user can also view their booking history, which will contain details like the hub from which the cycle was booked, the time of booking, the duration of the ride, etc.
 
 The home screen presents several options, such as a profile sidebar that features additional choices like Personal Info, Wallet, History, My Bookings, and a Log Out button. Additionally, the home screen displays the user's preferred hub along with functions for viewing the map and searching for hubs.
-\subsubsection{Hardware Interfaces}
+\subsection{Hardware Interfaces}
 \begin{itemize}
     \item \textbf{User devices}: The software would be available for use in devices with internet access, using which the users can directly book their cycles. This will include smartphones, tablets and laptops. Accessibility of the software on mobile devices like smartphones would make the process of cycle booking easy and handy for the user.
     \item \textbf{Cycle Locking mechanism}: The cycle locking mechanism would be made using solenoid locks present at the cycle hubs. The locks will be accessed by the server using an Arduino microcontroller, and its communication will be bridged using the Python \texttt{pyserial} library.
@@ -191,12 +235,12 @@ The home screen presents several options, such as a profile sidebar that feature
 \begin{center}
     \includegraphics*[scale=0.75]{rfid-img.png}
 \end{center}
-\subsubsection{Software Interfaces}
+\subsection{Software Interfaces}
 \begin{itemize}
     \item The server-side components, including the database, must be hosted in a Linux-based operating system environment
     \item The client-side components must be functional on modern web browsers as well as their mobile versions, like Google Chrome, Safari, Mozilla Firefox, Microsoft Edge, and Brave
     \item The database management system used by us will be PostgreSQL. The following databases will be created:
-    \begin{itemize}
+    \begin{itemize}[label={*}]
         \item The user database will store all users’ data, including authentication details and personal information
         \item The rides database will store all trips’ data, including the duration and user associated with the trip
         \item The hubs database will store all cycle hubs’ data - number of available cycles and location of the hub
@@ -207,8 +251,8 @@ The home screen presents several options, such as a profile sidebar that feature
     \end{itemize}
 \end{itemize}
 
-\subsection{Functional Requirements}
-\subsubsection{Administrative access using designated usernames and passwords}
+\section{Functional Requirements}
+\subsection{Administrative access using designated usernames and passwords}
 \begin{itemize}
     \item Usernames and passwords, known only to authorized users, authenticate their identity during login and grant them administrative access control for system management, including notifying users
     \item Administrative access allows users to authenticate or deactivate user accounts, including resetting passwords and managing user access.
@@ -216,51 +260,51 @@ The home screen presents several options, such as a profile sidebar that feature
     \item Administrative access allows users to adjust rental and membership prices and see users with negative balances
 \end{itemize}
 
-\subsubsection{Provision for users to avail services and subscribe for enhanced features}
+\subsection{Provision for users to avail services and subscribe for enhanced features}
 \begin{itemize}
     \item The system allows users to create their profiles by providing essential information, password, and identification proof, IITK campus email for campus residents, and contact numbers for visitors
     \item After successful authentication, the system allows users to update their personal information, reset their passwords, and avail of bicycle rental services
     \item The system allows users to become members and avail of enhanced features by paying a monthly subscription fee
 \end{itemize}
 
-\subsubsection{Availability of an advance cycle booking system for subscribed users}
+\subsection{Availability of an advance cycle booking system for subscribed users}
 \begin{itemize}
     \item Subscribed users gain exclusive access to a bicycle booking system, offering them early access to available bicycles
     \item Subscribed users can define their booking window by providing necessary information such as date, time, and location for their advanced bookings, allowing them to reserve bicycles for a specified period in advance by paying a booking fee charged according to the time for which the bicycle was booked
     \item The system offers flexibility in booking options, allowing subscribed users to modify or cancel their advanced bookings based on their changing plans
 \end{itemize}
 
-\subsubsection{Real-time visibility of available cycles at each hub}
+\subsection{Real-time visibility of available cycles at each hub}
 \begin{itemize}
     \item The system allows the display of real-time data on available bicycles at each hub
     \item Users can use the map interface integrated into the system, providing a visual representation of cycle hub locations and the number of available bicycles at each site
     \item The system automatically refreshes after a specific time period for real-time updates to ensure that users have the latest information on cycle availability
 \end{itemize}
 
-\subsubsection{Visibility of hubs in proximity to any specified location}
+\subsection{Visibility of hubs in proximity to any specified location}
 \begin{itemize}
     \item The system allows users to input a specific address landmark or use their current location as the basis for finding nearby hubs
     \item The system, if given permission, utilizes location-based services (LBS), like GPS or Wi-Fi positioning, to determine the current location of the user or any specified location
 \end{itemize}
 
-\subsubsection{Implementation of a scheduled maintenance system for the upkeep of cycles}
+\subsection{Implementation of a scheduled maintenance system for the upkeep of cycles}
 \begin{itemize}
     \item The system defines a regular maintenance schedule for each cycle, considering factors such as total usage time and customers' feedback
     \item The system automatically sends maintenance reminders to maintenance service providers
     \item The system provides customer support for handling emergency maintenance situations, such as breakdowns or safety-related issues
 \end{itemize}
 
-\subsubsection{Customer feedback mechanism for maintenance or post-ride experiences}
+\subsection{Customer feedback mechanism for maintenance or post-ride experiences}
 \begin{itemize}
     \item The system allows users to report any issues with bicycles through the dedicated reporting system
     \item The system defines a feedback form where users can report any issues and give feedback by including fields for specific details, such as cycle ID, Hub location, and/or a description of the problem
     \item The system provides a rating system (5 stars rating system) for users to quickly express their overall satisfaction with the ride and the bicycle itself
 \end{itemize}
 
-\subsubsection{Access to detailed analytics, including ride and payment history}
+\subsection{Access to detailed analytics, including ride and payment history}
 \begin{itemize}
     \item The system provides a user-friendly dashboard where users can access and review detailed analytics of their ride history, including
-    \begin{itemize}
+    \begin{itemize}[label={*}]
         \item Total number of rides
         \item Date and time of each ride
         \item Source and destination of each ride
@@ -269,24 +313,25 @@ The home screen presents several options, such as a profile sidebar that feature
         \item Average ride duration
     \end{itemize}
     \item The system provides a dashboard where users can access and review detailed analytics of wallet activities of users, including
-    \begin{itemize}
+    \begin{itemize}[label={*}]
         \item Subscription charges (if any)
         \item Current balance
-        \item Transcation history
+        \item Transaction history
         \item Payment methods used
     \end{itemize}
 \end{itemize}
 
-\subsubsection{Implementation of a notification system}
+\subsection{Implementation of a notification system}
 \begin{itemize}
     \item The system sends regular notifications to users to inform them about upcoming maintenance activities or system updates that might affect bike availability
     \item The system sends reminders to users about upcoming subscription renewals
 \end{itemize}
-
-\subsection{Use Case Model}
-\subsubsection{Use Case 1}
+\newpage
+\section{Use Case Model}
+\subsection{Use Case 1}
 \begin{center}
-\includegraphics*[scale=0.5]{usecase-1.png}
+\includegraphics*[scale=0.6]{usecase-1.png}\\
+\vspace{5mm}
 \begin{tabular}{|l|p{10cm}|}
     \hline
     \textbf{Author} & Pathe Nevish Ashok \\
@@ -305,9 +350,11 @@ The home screen presents several options, such as a profile sidebar that feature
     \hline
 \end{tabular}
 \end{center}
-\subsubsection{Use Case 2}
+\newpage
+\subsection{Use Case 2}
 \begin{center}
-\includegraphics*[scale=0.5]{usecase-2.png}
+\includegraphics*[scale=0.6]{usecase-2.png}\\
+\vspace{5mm}
 \begin{tabular}{|l|p{10cm}|}
     \hline
     \textbf{Author} & Raghav Manglik, Srishti Chandra \\
@@ -326,9 +373,10 @@ The home screen presents several options, such as a profile sidebar that feature
     \hline
 \end{tabular}
 \end{center}
-\subsubsection{Use Case 3}
+\subsection{Use Case 3}
 \begin{center}
-\includegraphics*[scale=0.5]{usecase-3.png}
+\includegraphics*[scale=0.6]{usecase-3.png}\\
+\vspace{5mm}
 \begin{tabular}{|l|p{10cm}|}
     \hline
     \textbf{Author} & Anaswar K B \\
@@ -347,9 +395,10 @@ The home screen presents several options, such as a profile sidebar that feature
     \hline
 \end{tabular}
 \end{center}
-\subsubsection{Use Case 4}
+\subsection{Use Case 4}
 \begin{center}
-\includegraphics*[scale=0.5]{usecase-4.png}
+\includegraphics*[scale=0.6]{usecase-4.png}\\
+\vspace{5mm}
 \begin{tabular}{|l|p{10cm}|}
     \hline
     \textbf{Author} & Khushi Gupta, Ananya Singh Baghel, Kaneez Fatima\\
@@ -368,9 +417,10 @@ The home screen presents several options, such as a profile sidebar that feature
     \hline
 \end{tabular}
 \end{center}
-\subsubsection{Use Case 5}
+\subsection{Use Case 5}
 \begin{center}
-\includegraphics*[scale=0.5]{usecase-5.png}
+\includegraphics*[scale=0.6]{usecase-5.png}\\
+\vspace{5mm}
 \begin{tabular}{|l|p{10cm}|}
     \hline
     \textbf{Author} &  Wadkar Srujan Nitin\\
@@ -389,9 +439,10 @@ The home screen presents several options, such as a profile sidebar that feature
     \hline
 \end{tabular}
 \end{center}
-\subsubsection{Use Case 6}
+\subsection{Use Case 6}
 \begin{center}
-\includegraphics*[scale=0.5]{usecase-6.png}
+\includegraphics*[scale=0.6]{usecase-6.png}\\
+\vspace{5mm}
 \begin{tabular}{|l|p{10cm}|}
     \hline
     \textbf{Author} & Debraj Karmakar, Amogh Bhagwat\\
@@ -411,14 +462,13 @@ The home screen presents several options, such as a profile sidebar that feature
 \end{tabular}
 \end{center}
 
-\newpage
-\section{Other Non-Functional Requirements}
-\subsection{Performance Requirements}
+\chapter{Other Non-Functional Requirements}
+\section{Performance Requirements}
 The software should maintain a 99.9\% uptime, allowing users to access cycle rental services without significant disruptions, excluding scheduled maintenance windows.
 
 The system should support a minimum of 500 concurrent rental transactions per minute to ensure efficient and timely processing of user requests.The system should respond to user requests for cycle rentals within 3 seconds under normal operating conditions.The software should be designed with built-in fault tolerance mechanisms to mitigate the impact of hardware or software failures, ensuring uninterrupted service availability.
 
-\subsection{Safety and Security Requirements}
+\section{Safety and Security Requirements}
 \begin{itemize}
     \item \textbf{User Authentication}: The system must employ robust user authentication mechanisms, such as strong password policies or multi-factor authentication, to verify the identity of users before granting access to rental services. Proper login mechanisms should be used to avoid hacking.
     \item \textbf{Data Encryption}: All sensitive user information, including personal details and payment data, must be encrypted during transmission to prevent unauthorized access and data breaches. Information should be securely transmitted to the server without any changes in information. Secure storage of passwords will be done after salting and hashing the passwords. In other words, the system admin can only verify if the password is correct but won’t know what the password submitted by the user was. On maintenance complaints, the cycle’s information will be sent to the admin. The complainant users’ information is not sent to the server.
@@ -426,34 +476,40 @@ The system should support a minimum of 500 concurrent rental transactions per mi
     \item \textbf{Physical Security}: Implement physical security measures for any hardware components of the system to prevent unauthorized access. The cycle locks will only be opened when the user scans the QR code on the cycle.
 \end{itemize}
 
-\subsection{Software Quality Attributes}
-\subsubsection{Usability}
+\section{Software Quality Attributes}
+\subsection{Usability}
 \begin{itemize}
     \item \textbf{Intuitiveness}: The software should have a user-friendly interface, allowing users to navigate through the rental process without confusion easily.
     \item \textbf{Response Time}: Provide quick response times for user interactions, such as renting a cycle or viewing available options.
 \end{itemize}
 
-\subsubsection{Availability}
+\subsection{Availability}
 \begin{itemize}
     \item In case of a server crash, the system state must be restored within two hours.
     \item \textbf{Performance Scalability}: The number of users will increase in large numbers during campus fests. The system availability needs to be enough for this purpose. Ensure the software can handle an increased load as the user base grows.
 \end{itemize}
-\subsubsection{Reliability}
+\subsection{Reliability}
 \begin{itemize}
     \item The MTTF (mean time to failure) shall be more than one week.
     \item The system must undergo extensive feature testing, load testing, and regression testing prior to release and/or deployment.
     \item The system should be reliable in giving correct results consistently.
 \end{itemize}
 
-\subsubsection{Portability}
+\subsection{Portability}
 We are using Django with bootstrap and inline CSS to design the front-end part of our application, thus our application is portable, responsive and can run on most of the modern web browsers.
 
-\newpage
-\section{Other Requirements}
+\chapter{Other Requirements}
+\section{Legal Requirements and Copyright}
+User data collected should be stored in the country’s regional data center. This is to comply with data protection and privacy rules that may be enforced by the Government of the nation. 
+\\
+Copyright of the source code and the documents must be retained by the developers of the system.
 
-\newpage
-\section{Data Dictionary}
+\section{Authentication}
+Permission will be required for utilising OTPs for the authentication process as this will require sending automated emails to the user's emiail id. 
 
-\newpage
-\section{Group Log}
+\begin{appendices}
+\chapter{Data Dictionary}
+
+\chapter{Group Log}
+\end{appendices}
 \end{document}
