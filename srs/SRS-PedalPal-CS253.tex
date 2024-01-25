@@ -1,0 +1,151 @@
+\documentclass{scrreprt}
+\usepackage[top=3cm, bottom=3cm, left = 2cm, right = 2cm]{geometry} 
+\geometry{a4paper} 
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{graphicx} 
+\usepackage{amsmath,amssymb}  
+\usepackage{bm}  
+\usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref}  
+\hypersetup{linkcolor=black,citecolor=black,filecolor=black,urlcolor=blue} % black links, for printed output
+\usepackage{memhfixc} 
+\usepackage{pdfsync}  
+\usepackage{fancyhdr}
+\usepackage{lmodern}
+\usepackage[page,toc,titletoc,title]{appendix}
+
+\pagestyle{fancy}
+
+\begin{document}
+\begin{flushright}
+    \rule{16cm}{5pt}\vskip1cm
+    \textbf{{\fontsize{40}{48}\selectfont Software Requirements}\\ {\fontsize{40}{48}\selectfont Specification}\\\vspace{1cm}\huge{for}\\\vspace{1cm}\Huge{PedalPal}\\ \vspace{1.5cm}\huge{Version 1.1}\\\vspace{1cm}\huge{Prepared by}}
+\end{flushright}
+\vspace{1.0cm}
+\large{\begin{tabular*}{\columnwidth}{@{\extracolsep{\stretch{1}}}*{3}{c}@{}}
+    \Large{Group 4} & & \Large{Group Name: Bit Brewers} \\
+    Raghav Manglik & 220854 & \href{mailto:raghavkmanglik@gmail.com}{raghavkmanglik@gmail.com} \\
+    Amogh Bhagwat & 220288 & \href{mailto:amogh.2004b@gmail.com}{amogh.2004b@gmail.com} \\
+    Srishti Chandra & 221088 & \href{mailto:chandra.srishti2403@gmail.com}{chandra.srishti2403@gmail.com} \\
+    Wadkar Srujan Nitin & 221212 & \href{mailto:srujanwadkar@gmail.com}{srujanwadkar@gmail.com} \\
+    Anaswar K B & 220138 & \href{mailto:anaswarkb013@gmail.com}{anaswarkb013@gmail.com} \\
+    Khushi Gupta & 220531 & \href{mailto:khushi07g@gmail.com}{khushi07g@gmail.com} \\
+    Ananya Singh Baghel & 220136 & \href{mailto:ananyabaghel2004@gmail.com}{ananyabaghel2004@gmail.com} \\
+    Pathe Nevish Ashok & 220757 & \href{mailto:nevu.pathe1234@gmail.com}{nevu.pathe1234@gmail.com} \\
+    Debraj Kamakar & 220329 & \href{mailto:debraj2003jsr@gmail.com}{debraj2003jsr@gmail.com} \\
+    Kaneez Fatima & 220496 & \href{mailto:kaneezfatimamehdi7@gmail.com}{kaneezfatimamehdi7@gmail.com} \\
+    
+\end{tabular*}}
+
+\vspace{2.0cm}
+\begin{center}
+\large{
+\begin{tabular}{l l}
+    Course: & CS253 \\
+    Mentor TA: & Mr. Bharat \\
+    Instructor: & Prof. Indranil Saha \\
+    Date: & \today
+\end{tabular}
+}
+\end{center}
+
+\tableofcontents
+
+\chapter{Revisions}
+
+\chapter{Introduction}
+\section{Product Scope}
+Many individuals, from students to faculties, have embraced the lifestyle of cycling at the IITK campus. These cycles require timely maintenance and often get lost. A large number of lost cycles are never found by the owners and remain stacked like waste. Considering the temporary stay of students on campus, buying new cycles is not very cost-effective in such cases. In addition to that, during fests and other campus events, visitors from outside generally face problems in roaming around our huge campus.
+
+This calls for a need for public cycle stands, from where the cycles can be rented using our  software application. These cycle stands will be located at some of the most visited locations on campus, which can be accessed through our portal, making the transport easier. Specifying the location will inform them about the nearest stands along with the number of available cycles in it.
+It will also schedule maintenance on a regular basis, taking a record of the client’s feedback. The app will keep track of the duration for which the cycle is used by the client and charge accordingly. We will also provide cycle booking facilities
+
+\section{Intended Audience and Document Overview}
+\textbf{Software Developers} who will design the software as per the requirements given in the document, in this case, the group members. \textbf{Project Managers} who will supervise the planning and execution of the software development procedure, in this case, the TAs and the course instructor. \textbf{Testers and approvers} who will perform a quality check of the designed software and give their feedback on the interface, areas of improvement, etc. \textbf{Users} will be the customers of the software, in this case, our entire campus residents and visitors.
+
+\subsection*{Document Overview}
+\subsubsection*{Section 1: Revisions}
+This section contains information about the various versions that this document has gone through.
+
+\subsubsection*{Section 2: Introduction}
+In this section, we provide some basic information that would be useful in reading the SRS, such as document conventions, abbreviations, etc. The reader may choose to skip the section if they are familiar with the basic terminologies. In any case, this section will serve as a helpful collection of information to clarify any confusion that may occur while reading the document.
+
+\subsubsection*{Section 3: Overall Description}
+This section offers an overall view of the software system and its functionalities, assumptions, and dependencies. This will be a useful read for those seeking to familiarize themselves with the system at a quick glance. A reader is encouraged to read this part as it provides a good basis for understanding the next section of the SRS.
+
+\subsubsection*{Section 4: Specific Requirements}
+This section contains detailed information about the software and explains its functions in detail through the use of numerous tree diagrams. This proves indispensable for end-users, clients, and developers alike, serving as a roadmap during the development phase and a user manual for end-users.
+
+\subsubsection*{Section 5: Other Non-Functional Requirements}
+Important non-functional requirements are expounded here. This is of special importance to the developers of the software.
+
+\section{Definitions, Acronyms, and Abbreviations}
+\begin{center}
+\begin{tabular}{|c|c|p{.5\textwidth}}
+    \hline
+    SRS & Software Requirements Specification \\
+    \hline
+    DBMS & Database Management System \\
+    \hline
+    UI & User Interface \\
+    \hline
+    API & Application Programming Interface \\
+    \hline
+    GPS & Global Positioning System \\
+    \hline
+    CSS & Cascading Style Sheets \\
+    \hline
+    SQL & Structured Query Language \\
+    \hline
+    OTP & One Time Password \\
+    \hline
+    HTTPS & Hypertext Transfer Protocol (Secure)\\
+    \hline
+    Subscribed Users & Users who avail services as per a prepaid subscription agreement \\
+    \hline
+    Guest Users & Users who avail services as per a postpaid agreement \\
+    \hline
+    Hubs / Stands & Places where the cycles will be present \\
+    \hline
+    Ride time & Total time between unlocking and locking a cycle \\
+    \hline
+\end{tabular}
+\end{center}
+
+\section{Document Conventions}
+
+\section{References and Acknowledgments}
+\begin{itemize}
+    \item We would also like to acknowledge the help of our TA, Mr. Bharat, and our course instructor, Prof. Indranil Saha for guiding us through the document, and providing a template for the Software Requirements Specification document.
+    \item We utilised \href{https://www.figma.com/}{Figma} to craft visually compelling graphs, effectively translating our ideas into a concise and impactful pictorial representation.
+    \item We used the tool \href{https://www.circuito.io/}{Circuito.io} to capture the electronic circuit of the hardware subsystem.
+\end{itemize}
+
+\chapter{Overall Description}
+\section{Product Overview}
+Our product, PedalPal, is designed to enhance the cycling experience for IITK students through a convenient and efficient bicycle-sharing system on campus. Invaluable for students who have lost their bicycles or are facing cycling issues, PedalPal serves as a self-contained product, allowing easy bicycle issuance from strategically installed hubs across the university. Moreover, it caters to campus visitors, providing a seamless means to explore the campus on wheels. 
+
+The software streamlines the user interaction process by allowing users to book cycles for desired durations and receive real-time information about available cycles. PedalPal further enhances the experience by offering personalized details on the closest hub to the user's current location, ensuring convenient access. The user interface incorporates a history feature, allowing users to review past cycling sessions and track usage patterns. Thus providing a user-friendly solution and optimizing the cycling journey for both students and visitors on campus.
+
+\section{Product Functionality}
+\begin{itemize}
+    \item Administrative access using designated usernames and passwords
+    \item Provision for users to register to avail services and subscribe for enhanced features
+    \item Availability of an advance cycle booking system exclusively for subscribed users
+    \item Real-time visibility of available cycles at each hub
+    \item Visibility of hubs in proximity to any specified location
+    \item User location tracking for personalized service
+\end{itemize}
+
+\chapter{Specific Requirements}
+
+\chapter{Other Non-Functional Requirements}
+
+\chapter{Other Requirements}
+
+\begin{appendices}
+\chapter{Data Dictionary}
+
+\chapter{Group Log}
+\end{appendices}
+\end{document}
