@@ -18,7 +18,7 @@
 \fancyhfoffset[L]{1cm} % left extra length
 \fancyhfoffset[R]{1cm} % right extra length
 \rhead{\textbf{\textit{Page-\thepage}}}
-\lhead{\textbf{\textit{Software Requirements Specification for PedalPal}}}
+\lhead{\textbf{\textit{Software Design Document for PedalPal}}}
 \cfoot{}
 \usepackage{amsmath,amssymb}  
 \usepackage{bm}  
@@ -80,7 +80,7 @@
   {\colorsectionx}
 \titlespacing*{\section}{0pt}{\baselineskip}{\baselineskip}
 \newcommand{\colorsectionx}[1]{\colorbox{gray!120}{\parbox{\dimexpr\textwidth-2\fboxsep}{\color{white} \centering \huge{\textbf{Contents}}}}}
-
+\vspace{-1cm}
 \tableofcontents
 
 \newpage
@@ -108,7 +108,7 @@
 \newpage
 \section{\centering{\textbf{Context Design}}}
 \subsection{Context Model}
-The context model of PedalPal is shown in the diagram. The context model shows the various entities that interact with the system, and the relationships between them. The entities are the user, the admin, the database, the payment gateway, the map, and the cycle lock. The user interacts with the system through the mobile app, while the admin interacts with the system through the web app. The database stores all the data of the system, while the payment gateway is used for the payment functionality. The map is used for the map functionality, and the microcontroller is used for the cycle lock functionality. The mail server is used to send password reset mails to the user.
+The context model of PedalPal is shown in the diagram. The context model shows the various entities that interact with the system, and the relationships between them. The entities are the user, the admin, the database, the payment gateway, the map, and the cycle lock. The user interacts with the system through the mobile app, while the admin interacts with the system through the web app. The database stores all the data of the system, while the payment gateway adds payment functionality. The Google Maps API adds the ability to display the map of IIT Kanpur campus along with the cyclehubs, and the microcontroller is used for the cycle lock functionality. The mail server is used to send password reset mails and reminder mails to the user.
 \begin{center}
   \includegraphics[scale=0.1]{state-diagram-images/context-model.jpg}
 \end{center}
@@ -236,6 +236,11 @@ The image describes the high-level state diagram of the application from a user 
 \subsubsection{Ride End state diagram}
 \begin{center}
   \includegraphics[scale=0.2]{state-diagram-images/ride_end.jpg}
+\end{center}
+
+\subsubsection{Miscellaneous State Diagrams}
+\begin{center}
+  \includegraphics[scale=0.25]{state-diagram-images/misc.png}
 \end{center}
 
 \newpage
