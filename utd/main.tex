@@ -320,6 +320,231 @@ The database is initialized with multiple bookings in the \texttt{setUp()} metho
     \includegraphics[scale=0.8]{unit_testing_codes/transaction_history.png}
 \end{center}
 
+\newpage
+\section{\centering{\textbf{Integration Testing}}}
+
+\subsection{Authentication}
+
+\subsubsection{Registering a User}
+\textbf{Module Details: }This module integrates the registration process for new users, providing the necessary functionality to create an account.
+\\
+\textbf{Test Owner: }Srishti Chandra
+\\
+\textbf{Test Date: }27/03/2024
+\\
+\textbf{Test Results: }
+\begin{itemize}
+    \item \textbf{Test Case 1: }Invalid name, phone number, or email address is entered.
+    \\
+    \textbf{Result: }Error messages are displayed in red text below the respective entry fields:
+    \\
+    - "Please enter your full name" is displayed if the full name field is left blank or contains only whitespace characters.
+    \\
+    - "Enter a valid phone number" is displayed if an invalid phone number format is entered.
+    \\
+    - "Enter a valid email address" is displayed if an invalid email address format is entered.
+
+    \item \textbf{Test Case 2: }Valid name, phone number, and already registered email address are entered in the respective fields.
+    \\
+    \textbf{Result: }An alert dialog is triggered, notifying the user of an existing profile associated with the provided email address.
+
+    \item \textbf{Test Case 3: }Valid name, phone number, and unregistered email address are entered in the respective fields.
+    \\
+    \textbf{Result: }Upon successful registration, the user is directed to the Account Created page. Here, instructions are given to activate the account via an email link. Clicking "Continue" on this page leads the user to the login page.
+
+\end{itemize}
+\textbf{Additional Comments: }Any trailing whitespace in the Full Name field should be removed and the full name must contain first and last name to ensure that the textbox recognizes the entry as complete.
+
+
+\subsubsection{Logging in a User}
+\textbf{Module Details: }This module is integration of all the components of the login page.
+\\
+\textbf{Test Owner: }Srishti Chandra
+\\
+\textbf{Test Date: }27/03/2024
+\\
+\textbf{Test Results: }
+\begin{itemize}
+    \item \textbf{Test Case 1: }If the user has not signed up and attempts to log in with an unregistered email ID and password.
+    \\
+    \textbf{Result: }An alert prompt is displayed that conveys that no such user exists.
+
+    \item \textbf{Test Case 2: }If the user has not signed up and attempts to sign up.
+    \\
+    \textbf{Result: }The user can click on the "Not on Pedal Pal Yet? Sign Up!" link located at the bottom of the screen, which redirects them to the registration page.
+
+    \item \textbf{Test Case 3: }Invalid email ID is entered, such as incorrect formatting or other issues.
+    \\
+    \textbf{Result: }An error message in red text is displayed below the email input field, indicating "Invalid email address format."
+
+    \item \textbf{Test Case 4: }Incorrect password is entered with a registered email ID.
+    \\
+    \textbf{Result: }An alert prompt is displayed that conveys “Incorrect  Password”.
+
+    \item \textbf{Test Case 5: }User doesn’t remember the password.
+    \\
+    \textbf{Result: }Clicking on "Forgot Password" redirects to the Forgot Password page.
+
+    \item \textbf{Test Case 6: }Registered email ID and password are entered, and the Login button is clicked.
+    \\
+    \textbf{Result: }The user is successfully redirected to the Homepage of Pedalpal.
+
+\end{itemize}
+\textbf{Additional Comments: }None
+
+\subsubsection{Email Verification}
+
+\subsubsection{Forgot Password}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Wallet: Transaction History and Add Balance}
+\textbf{Module Details: }This module includes tests for:
+\begin{itemize}
+    \item Transaction Logs of the in-app Wallet, featuring payments made while using app.
+    \item Functionality of adding balance to the wallet.
+\end{itemize}
+\textbf{Test Owner: }Raghav Manglik
+\\
+\textbf{Test Date: }[ 26-03-2024 - 27-03-2024 ]
+\\
+\textbf{Test Results: }
+
+
+\begin{itemize}
+    \item \textbf{Test case 1: }An unsubscribed user attempts to access the wallet, which is a service that requires a subscription.
+    \\
+    \textbf{Result: }An alert prompt is displayed telling user that this feature is available only for subscribed users.
+    \item \textbf{Test case 2: }After subscribing, A user tries to access the wallet.
+    \\
+    \textbf{Result: }My Wallet page is displayed, showing the current balance after deducting subscription fee of Rs.20  from predetermined amount of Rs.100 along with option to Add balance and View Transaction History
+    \item \textbf{Test case 3: }A user tries to view Transaction History.
+    \\
+    \textbf{Result: }Transaction history page displaying credit and debit of balance with green and red colour respectively are shown.
+    \item \textbf{Test case 4: }A user tries to add Rs.0 to wallet.
+    \\
+    \textbf{Result: }The Razorpay payment gateway fails to operate correctly without displaying any error messages. ( DEBUG NEEDED )
+    \item \textbf{Test case 5: }A user tries to copy/cut and paste an invalid amount (-ve amount or a string of characters) in Add Balance window.
+    \\
+    \textbf{Result: }Only leading numerical values are pasted in the Enter Amount box. 
+    \item \textbf{Test case 6: }A user tries to enter more than 2 digits after the decimal point / any symbol other than a single decimal point in Enter Amount Box in Add Balance window.
+    \\
+    \textbf{Result: }The input restricts user to enter no more than two digits after the decimal point, while also restricting the entry of invalid symbols and permitting only a single decimal point.
+
+
+
+
+
+
+    
+    
+\end{itemize}
+
+
+
+\textbf{Additional Comments: } [WHAT TO BE CHANGED AFTER DEBUG]
+
+
+
+
+\subsection{Ride History Page}
+\textbf{Module Details: }This module includes tests for viewing bicycle renting logs.
+\\
+\textbf{Test Owner: }Raghav Manglik
+\\
+\textbf{Test Date: }[ 26-03-2024 - 27-03-2024 ]
+\\
+\textbf{Test Results: }
+\begin{itemize}
+    \item \textbf{Test Case 1: }A user who hasn't rented bicycles before accesses the History page.
+    \\
+    \textbf{Result: }History Page is displayed with Total time used 0h 0m and no record of any ride.
+    \item \textbf{Test Case 2: }A user while riding, that is with an active ride, accesses the History Page.
+    \\
+    \textbf{Result: }The History Page is displayed with information regarding past rides and no details about the active ride.
+\end{itemize}
+\textbf{Additional Comments: }The discrepancy between the starting and ending times compared to the duration shown in the middle below the arrow arises from the system factoring in seconds in its calculation.
+
+\subsection{My Booking Page}
+\textbf{Module Details: }This module includes tests for accessing logs for both past bicycle bookings and currently active bookings.
+\\
+\textbf{Test Owner: }Raghav Manglik
+\\
+\textbf{Test Date: }[ 26-03-2024 - 27-03-2024 ]
+\\
+\textbf{Test Results: }
+\begin{itemize}
+    \item \textbf{Test Case 1: }An unsubscribed user accesses My Bookings page, a subscription required service.
+    \\
+    \textbf{Result: }My Bookings Page is displayed with both Current and Past Bookings as 0.
+    \item \textbf{Test Case 2: }A user who hasn't booked any bicycle before accesses My Bookings page.
+    \\
+    \textbf{Result: }My Bookings Page is displayed with both Current and Past Bookings as 0.
+    \item \textbf{Test Case 3: }A Bicycle is booked for a finite time and My Bookings Page is accessed.
+    \\
+    \textbf{Result: }My bookings page is displayed with current bookings incremented and showing the details about the booking. Initially, The bicycle remained in Current Bookings section once the booking period expired. This was subsequentially rectified as once the booking period expired, The bicycle moved to Past Bookings section.
+
+\end{itemize}
+\textbf{Additional Comments: }The discrepancy between the starting and ending times of the booking compared to the duration shown arises from the system factoring in seconds in its calculation.
+
+\subsection{View Profile Page and Subscribe}
+\textbf{Module Details: }This module includes tests for accessing information about a user.
+\\
+\textbf{Test Owner: }Raghav Manglik
+\\
+\textbf{Test Date: }[ 26-03-2024 - 27-03-2024 ]
+\\
+\textbf{Test Results: }
+\begin{itemize}
+    \item \textbf{Test Case 1: }A user navigates to their Profile Page.
+    \\
+    \textbf{Result: }Profile Page is displayed with their Name, Email, Phone, Subscription Status and a default Profile picture. If the user is not subscribed, an additional button is displayed on their Profile Page to navigate to the subscription option. Clicking this button opens the Razorpay payment gateway, which charges Rs.100. Out of this amount, Rs.80 is added to the user's wallet, and Rs.20 is deducted as the subscription fee.
+    \item \textbf{Test Case 2: }A user attempts to change their profile picture by clicking on a camera icon beside the profile picture.
+    \\
+    \textbf{Result: }The feature to change Personal Information along with Profile Picture is yet to be implemented. Currently clicking on that icon does nothing.
+\end{itemize}
+\textbf{Additional Comments: }
+
+\newpage
+\section{\centering{\textbf{System Testing}}}
+\subsection{Functional Requirements}
+\subsection{Non-Functional Requirements}
+\subsubsection{Performance Requirements}
+\textbf{Test Owner: }Amogh Bhagwat\\
+\textbf{Date: }30/03/2024\\
+\textbf{Test Description: }This test case is used to check the response time of the backend server.\\
+\textbf{Test Results: }The response time of the backend server APIs is less than 1 second.\\
+
+\begin{center}
+    \includegraphics[scale=0.6]{unit_testing_codes/load_testing.png}
+\end{center}
+\textbf{Additional Comments: }The response time of the backend server APIs is less than 1 second only when the server is already active. Since we are using Vercel's free plan,  the server goes to sleep after 5 minutes of inactivity. The first request after the server wakes up takes around 10-30 seconds.
+
+\subsubsection{Security Requirements}
+\begin{itemize}
+    \itemsep 0em
+    \item All user passwords are encrypted before storing them in the database. The user's password is never stored in plain text.
+    \item All payments are done through Razorpay's secure payment gateway.
+    \item All API calls between frontend and backend are authenticated using JWT tokens, and are encrypted using HTTPS.
+\end{itemize}
+
+\newpage
+\section{\centering{\textbf{Conclusion}}}
+
 \appendixpageoff
 \begin{appendices}
 
